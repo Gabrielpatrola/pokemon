@@ -9,7 +9,7 @@ export class BattleService {
       const pokemonB = await this.pokemonRepository.findOneBy({ id: pokemonBId });
 
       if (!pokemonA || !pokemonB) {
-        throw new Error("Um ou ambos os Pokémons não foram encontrados.");
+        throw new Error("Um ou ambos os Pokemons não foram encontrados.");
     }
 
       const totalLevel = pokemonA.nivel + pokemonB.nivel;

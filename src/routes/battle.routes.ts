@@ -2,12 +2,13 @@ import { Router } from 'express';
 import { BattleController } from "../controllers/BattleController";
 
 const battleRouter = Router();
+const battleController = new BattleController();
 
 /**
  * @swagger
  * /batalhar/{pokemonAId}/{pokemonBId}:
  *   post:
- *     summary: Efetua uma batalha entre dois Pokémons
+ *     summary: Efetua uma batalha entre dois Pokemons
  *     tags: [Battle]
  *     parameters:
  *       - in: path
@@ -15,13 +16,13 @@ const battleRouter = Router();
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID do Pokémon A
+ *         description: ID do Pokemon A
  *       - in: path
  *         name: pokemonBId
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID do Pokémon B
+ *         description: ID do Pokemon B
  *     responses:
  *       200:
  *         description: Retorna o resultado da batalha
@@ -53,10 +54,10 @@ const battleRouter = Router();
  *                     nivel:
  *                       type: integer
  *       404:
- *         description: Um ou ambos os Pokémons não foram encontrados
+ *         description: Um ou ambos os Pokemons não foram encontrados
  *       500:
  *         description: Erro interno do servidor
  */
-battleRouter.post("/batalhar/:pokemonAId/:pokemonBId", BattleController.battle);
+battleRouter.post('/batalhar/:pokemonAId/:pokemonBId', (req, res) => battleController.battle(req, res));
 
 export default battleRouter;

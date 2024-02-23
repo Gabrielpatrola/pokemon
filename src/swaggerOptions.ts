@@ -15,19 +15,19 @@ const options = {
           properties: {
             id: {
               type: 'integer',
-              description: 'O ID único do Pokémon',
+              description: 'O ID único do Pokemon',
             },
             tipo: {
               type: 'string',
-              description: 'O tipo do Pokémon',
+              description: 'O tipo do Pokemon',
             },
             treinador: {
               type: 'string',
-              description: 'O nome do treinador do Pokémon',
+              description: 'O nome do treinador do Pokemon',
             },
             nivel: {
               type: 'integer',
-              description: 'O nível do Pokémon',
+              description: 'O nível do Pokemon',
               example: 1,
             },
           },

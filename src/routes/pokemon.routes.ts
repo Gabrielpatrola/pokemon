@@ -2,13 +2,14 @@ import { Router } from 'express';
 import { PokemonController } from "../controllers/PokemonController";
 
 const pokemonRouter = Router();
+const pokemonController = new PokemonController();
 
 /**
  * @swagger
  * /pokemons:
  *   post:
- *     summary: Cria um novo Pokémon
- *     tags: [Pokémon]
+ *     summary: Cria um novo Pokemon
+ *     tags: [Pokemon]
  *     requestBody:
  *       required: true
  *       content:
@@ -24,7 +25,7 @@ const pokemonRouter = Router();
  *                 example: Ash Ketchum
  *     responses:
  *       200:
- *         description: Pokémon criado com sucesso
+ *         description: Pokemon criado com sucesso
  *         content:
  *           application/json:
  *             schema:
@@ -32,21 +33,21 @@ const pokemonRouter = Router();
  *       400:
  *         description: Tipo inválido
  */
-pokemonRouter.post("/pokemons", PokemonController.create);
+pokemonRouter.post('/pokemons', (req, res) => pokemonController.create(req, res));
 
 /**
  * @swagger
  * /pokemons/{id}:
  *   put:
- *     summary: Atualiza um Pokémon existente pelo ID
- *     tags: [Pokémon]
+ *     summary: Atualiza um Pokemon existente pelo ID
+ *     tags: [Pokemon]
  *     parameters:
  *       - in: path
  *         name: id
  *         schema:
  *           type: integer
  *         required: true
- *         description: ID do Pokémon
+ *         description: ID do Pokemon
  *     requestBody:
  *       required: true
  *       content:
@@ -61,65 +62,65 @@ pokemonRouter.post("/pokemons", PokemonController.create);
  *       204:
  *         description: No content
  *       404:
- *         description: Pokémon não encontrado
+ *         description: Pokemon não encontrado
  */
-pokemonRouter.put("/pokemons/:id", PokemonController.update);
+pokemonRouter.put('/pokemons/:id', (req, res) => pokemonController.update(req, res));
 
 /**
  * @swagger
  * /pokemons/{id}:
  *   delete:
- *     summary: Deleta um Pokémon pelo ID
- *     tags: [Pokémon]
+ *     summary: Deleta um Pokemon pelo ID
+ *     tags: [Pokemon]
  *     parameters:
  *       - in: path
  *         name: id
  *         schema:
  *           type: integer
  *         required: true
- *         description: ID do Pokémon a ser deletado
+ *         description: ID do Pokemon a ser deletado
  *     responses:
  *       204:
  *         description: No content
  *       404:
- *         description: Pokémon não encontrado
+ *         description: Pokemon não encontrado
  */
-pokemonRouter.delete("/pokemons/:id", PokemonController.delete);
+pokemonRouter.delete('/pokemons/:id', (req, res) => pokemonController.delete(req, res));
 
 /**
  * @swagger
  * /pokemons/{id}:
  *   get:
- *     summary: Retorna um Pokémon pelo ID
- *     tags: [Pokémon]
+ *     summary: Retorna um Pokemon pelo ID
+ *     tags: [Pokemon]
  *     parameters:
  *       - in: path
  *         name: id
  *         schema:
  *           type: integer
  *         required: true
- *         description: ID do Pokémon
+ *         description: ID do Pokemon
  *     responses:
  *       200:
- *         description: Pokémon encontrado
+ *         description: Pokemon encontrado
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Pokemon'
  *       404:
- *         description: Pokémon não encontrado
+ *         description: Pokemon não encontrado
  */
-pokemonRouter.get("/pokemons/:id", PokemonController.get);
+pokemonRouter.get('/pokemons/:id', (req, res) => pokemonController.get(req, res));
 
 /**
  * @swagger
  * /pokemons:
  *   get:
- *     summary: Retorna uma lista de todos os Pokémons
- *     tags: [Pokémon]
+ *     summary: Retorna uma lista de todos os Pokemons
+ *     tags: [Pokemon]
  *     responses:
  *       200:
- *         description: Lista de Pokémons
+ *         description: Lista de Pokemons
  *         content:
  *           application/json:
  *             schema:
@@ -127,6 +128,6 @@ pokemonRouter.get("/pokemons/:id", PokemonController.get);
  *               items:
  *                 $ref: '#/components/schemas/Pokemon'
  */
-pokemonRouter.get("/pokemons", PokemonController.list);
+pokemonRouter.get('/pokemons', (req, res) => pokemonController.list(req, res));
 
 export default pokemonRouter;

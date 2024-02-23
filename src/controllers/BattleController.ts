@@ -2,12 +2,17 @@ import { Request, Response } from "express";
 import { BattleService } from "../services/BattleService";
 
 export class BattleController {
-  static async battle(req: Request, res: Response) {
+  private battleService: BattleService;
+
+  constructor() {
+    this.battleService = new BattleService();
+  }
+   
+  async battle(req: Request, res: Response) {
     const { pokemonAId, pokemonBId } = req.params;
-    const battleService = new BattleService();
 
     try {
-      const { winner, loser } = await battleService.battle(parseInt(pokemonAId), parseInt(pokemonBId));
+      const { winner, loser } = await this.battleService.battle(parseInt(pokemonAId), parseInt(pokemonBId));
       
       const response = {
         vencedor: { id: winner.id, tipo: winner.tipo, treinador: winner.treinador, nivel: winner.nivel },
