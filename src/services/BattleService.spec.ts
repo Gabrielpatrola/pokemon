@@ -11,7 +11,7 @@ jest.mock("../data-source", () => ({
         }
       }),
       update: jest.fn().mockImplementation((pokemon) => Promise.resolve(pokemon)),
-      delete: jest.fn().mockImplementation((id) => 
+      delete: jest.fn().mockImplementation((id) =>
         id === 1 ? Promise.resolve({ affected: 1 }) : Promise.reject(new Error("Pokemon não encontrado para deletar"))
       )
     })
@@ -28,9 +28,9 @@ describe("BattleService", () => {
   it("deve determinar corretamente o vencedor e o perdedor quando ambos os Pokemons são encontrados", async () => {
     const { winner, loser } = await battleService.battle(1, 2);
 
-    expect(winner.id).toBe(1); 
-    expect(loser.id).toBe(2); 
-    expect(winner.nivel).toBe(101); 
+    expect(winner.id).toBe(1);
+    expect(loser.id).toBe(2);
+    expect(winner.nivel).toBe(101);
     expect(loser.nivel).toBe(1);
   });
 

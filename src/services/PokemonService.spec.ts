@@ -8,9 +8,9 @@ jest.mock("../data-source", () => ({
       findOneBy: jest.fn().mockImplementation(({ id }) =>
         id === 1 ? Promise.resolve({ id: 1, tipo: "pikachu", treinador: "Ash", nivel: 5 }) : null
       ),
-      delete: jest.fn().mockImplementation((id) => 
-      id === 1 ? Promise.resolve({ affected: 1 }) : Promise.reject(new Error("Pokemon não encontrado para deletar"))
-    ),
+      delete: jest.fn().mockImplementation((id) =>
+        id === 1 ? Promise.resolve({ affected: 1 }) : Promise.reject(new Error("Pokemon não encontrado para deletar"))
+      ),
       find: jest.fn().mockResolvedValue([
         { id: 1, tipo: "pikachu", treinador: "Ash", nivel: 5 },
         { id: 2, tipo: "charizard", treinador: "Misty", nivel: 4 }

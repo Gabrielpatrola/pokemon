@@ -16,7 +16,7 @@ describe('Battle API', () => {
       .post('/pokemons')
       .send({ tipo: 'charizard', treinador: 'Misty' });
     expect(res.statusCode).toEqual(200);
-    pokemonBId = res.body.id; 
+    pokemonBId = res.body.id;
   });
 
   it('POST /batalhar/:pokemonAId/:pokemonBId - Deve realizar uma batalha', async () => {
