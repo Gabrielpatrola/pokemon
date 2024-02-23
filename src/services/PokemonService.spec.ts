@@ -26,44 +26,44 @@ describe("PokemonService", () => {
     pokemonService = new PokemonService();
   });
 
-  it("create deve criar um Pokemon com sucesso", async () => {
+  it("Create should successfully create a Pokemon", async () => {
     const pokemon = await pokemonService.create("pikachu", "Ash");
     expect(pokemon).toHaveProperty("tipo", "pikachu");
     expect(pokemon).toHaveProperty("treinador", "Ash");
     expect(pokemon).toHaveProperty("id");
   });
 
-  it("create deve lançar um erro para tipo inválido", async () => {
-    await expect(pokemonService.create("invalido", "Ash")).rejects.toThrow("Tipo inválido");
+  it("Create should throw an error for invalid type", async () => {
+    await expect(pokemonService.create("invalid", "Ash")).rejects.toThrow("Tipo inválido");
   });
 
-  it("update deve atualizar o treinador de um Pokemon com sucesso", async () => {
+  it("Update should successfully update a Pokemon's trainer", async () => {
     const updatedPokemon = await pokemonService.update(1, "Brock");
     expect(updatedPokemon).toHaveProperty("treinador", "Brock");
   });
 
-  it("update deve lançar um erro se o Pokemon não for encontrado", async () => {
+  it("Update should throw an error if the Pokemon is not found", async () => {
     await expect(pokemonService.update(999, "Brock")).rejects.toThrow("Pokemon não encontrado");
   });
 
-  it("delete deve remover um Pokemon", async () => {
+  it("Delete should remove a Pokemon", async () => {
     await expect(pokemonService.delete(1)).resolves.not.toThrow();
   });
 
-  it("delete deve lançar um erro se o Pokemon não for encontrado", async () => {
+  it("Delete should throw an error if the Pokemon is not found", async () => {
     await expect(pokemonService.delete(999)).rejects.toThrow("Pokemon não encontrado para deletar");
   });
 
-  it("get deve recuperar um Pokemon pelo id", async () => {
+  it("Get should retrieve a Pokemon by id", async () => {
     const pokemon = await pokemonService.get(1);
     expect(pokemon).toHaveProperty("id", 1);
   });
 
-  it("get deve lançar um erro se o Pokemon não for encontrado", async () => {
+  it("Get should throw an error if the Pokemon is not found", async () => {
     await expect(pokemonService.get(999)).rejects.toThrow("Pokemon não encontrado");
   });
 
-  it("list deve retornar todos os Pokemons", async () => {
+  it("List should return all Pokemons", async () => {
     const pokemons = await pokemonService.list();
     expect(pokemons.length).toBeGreaterThan(0);
   });

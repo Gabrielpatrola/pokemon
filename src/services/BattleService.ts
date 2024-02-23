@@ -12,19 +12,7 @@ export class BattleService {
       throw new Error("Um ou ambos os Pokemons não foram encontrados.");
     }
 
-    const totalLevel = pokemonA.nivel + pokemonB.nivel;
-    const probabilityA = pokemonA.nivel / totalLevel;
-    const random = Math.random();
-
-    let winner: Pokemon, loser: Pokemon;
-
-    if (random < probabilityA) {
-      winner = pokemonA;
-      loser = pokemonB;
-    } else {
-      winner = pokemonB;
-      loser = pokemonA;
-    }
+    const { winner, loser } = this.probabilityCalculation(pokemonA, pokemonB);
 
     winner.nivel += 1;
     await Pokemon.update(winner.id, { nivel: winner.nivel });
@@ -33,10 +21,26 @@ export class BattleService {
       loser.nivel -= 1;
       await Pokemon.update(loser.id, { nivel: loser.nivel });
     } else {
-      loser.nivel = 0;
+      loser.nivel = 0
       await Pokemon.delete(loser.id);
     }
 
     return { winner, loser };
   }
+
+
+  probabilityCalculation(pokemonA: Pokemon, pokemonB: Pokemon) {
+    const [higherLevelPokemon, lowerLevelPokemon] = pokemonA.nivel > pokemonB.nivel ? [pokemonA, pokemonB] : [pokemonB, pokemonA];
+
+    const baseProbability = higherLevelPokemon.nivel / (higherLevelPokemon.nivel + lowerLevelPokemon.nivel);
+
+    const random = Math.random();
+
+    if (random < baseProbability) {
+      return { winner: higherLevelPokemon, loser: lowerLevelPokemon };
+    }
+
+    return { winner: lowerLevelPokemon, loser: higherLevelPokemon };
+  }
+
 }

@@ -19,7 +19,7 @@ describe('Battle API', () => {
     pokemonBId = res.body.id;
   });
 
-  it('POST /batalhar/:pokemonAId/:pokemonBId - Deve realizar uma batalha', async () => {
+  it('POST /batalhar/:pokemonAId/:pokemonBId - Should make a battle', async () => {
     const res = await request(app).post(`/batalhar/${pokemonAId}/${pokemonBId}`);
     expect(res.statusCode).toEqual(200);
     expect(res.body).toHaveProperty('vencedor');

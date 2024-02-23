@@ -25,7 +25,7 @@ describe("BattleService", () => {
     battleService = new BattleService();
   });
 
-  it("deve determinar corretamente o vencedor e o perdedor quando ambos os Pokemons são encontrados", async () => {
+  it("Should correctly determine the winner and loser when both Pokemons are found", async () => {
     const { winner, loser } = await battleService.battle(1, 2);
 
     expect(winner.id).toBe(1);
@@ -34,12 +34,12 @@ describe("BattleService", () => {
     expect(loser.nivel).toBe(1);
   });
 
-  it("deve lançar um erro se um dos Pokemons não for encontrado", async () => {
+  it("Should throw an error if one of the Pokemons is not found", async () => {
     await expect(battleService.battle(1, 999)).rejects.toThrow("Um ou ambos os Pokemons não foram encontrados.");
     await expect(battleService.battle(999, 2)).rejects.toThrow("Um ou ambos os Pokemons não foram encontrados.");
   });
 
-  it("deve lançar um erro se nenhum dos Pokemons for encontrado", async () => {
+  it("Should throw an error if neither of the Pokemons are found", async () => {
     await expect(battleService.battle(999, 998)).rejects.toThrow("Um ou ambos os Pokemons não foram encontrados.");
   });
 });
