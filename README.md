@@ -1,4 +1,4 @@
-# 🤖 Sample backend with NestJs
+# 👾 Pokemon API
 
 <p align="center">
   <img alt="Develop by" src="https://img.shields.io/badge/Develop%20by-Gabriel%20Patrola-blue?style=flat&logo=Awesome-Lists">
@@ -92,6 +92,9 @@ Este projeto inclui uma documentação interativa da API utilizando o Swagger UI
 
 4. **Teste a API**: Para testar um endpoint específico, clique no método desejado para expandir os detalhes. Você poderá fornecer valores para os parâmetros requeridos e então clicar no botão "Try it out!" para fazer uma chamada de teste.
 
+### Online
+
+Caso queira testar online sem ter que clonar o repositório, entre no link:[Pokemon API](https://pokemon-0p2w.onrender.com/api-docs)
+
 ---
 
-<sup> Feito com 💙 por <a href="https://github.com/gabrielpatrola" target="_blank" rel="noopener">Gabriel Patrola</a>.
