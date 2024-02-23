@@ -18,8 +18,8 @@ export class PokemonController {
     const { treinador } = req.body;
 
     try {
-      const pokemon = await PokemonService.update(Number(id), treinador);
-      return res.status(200).json(pokemon);
+      await PokemonService.update(Number(id), treinador);
+      return res.status(204).send();
     } catch (error) {
       return res.status(500).json({ message: error.message });
     }

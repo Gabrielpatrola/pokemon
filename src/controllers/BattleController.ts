@@ -8,10 +8,10 @@ export class BattleController {
 
     try {
       const { winner, loser } = await battleService.battle(parseInt(pokemonAId), parseInt(pokemonBId));
-      console.log(winner, loser)
+      
       const response = {
         vencedor: { id: winner.id, tipo: winner.tipo, treinador: winner.treinador, nivel: winner.nivel },
-        perdedor: loser ? { id: loser.id, tipo: loser.tipo, treinador: loser.treinador, nivel: loser.nivel } : "Perdedor deletado da tabela"
+        perdedor: { id: loser.id, tipo: loser.tipo, treinador: loser.treinador, nivel: loser.nivel }
       };
 
       return res.status(200).json(response);
