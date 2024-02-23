@@ -11,3 +11,5 @@ export const DB_CONFIG = {
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
 };
+
+export const isTest = process.env.NODE_ENV === 'test';
