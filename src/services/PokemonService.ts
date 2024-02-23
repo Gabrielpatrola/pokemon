@@ -24,6 +24,7 @@ export class PokemonService {
     await this.pokemonRepository.save(pokemon);
     return pokemon;
   }
+  
   static async delete(id: number): Promise<void> {
     const result = await this.pokemonRepository.delete(id);
     if (result.affected === 0) {
